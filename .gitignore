@@ -1,3 +1,6 @@
+# IDE
 .idea
-project/
+
+# sbt specific
 target/
+project/
