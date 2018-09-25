@@ -6,6 +6,11 @@ import Rotation._
 class Mower(var position: Coordinate, var direction: Orientation) {
 
   /*
+   * Auxiliary constructor for commodity
+   */
+  def this(x: Int, y: Int, direction: Orientation) = this(Coordinate(x, y), direction)
+
+  /*
    * When this method is called, mowner turn in place
    * clockwise (default) or counter clockwise
    */
@@ -23,4 +28,13 @@ class Mower(var position: Coordinate, var direction: Orientation) {
   def move(): Unit = {
     this.position += this.direction.vector
   }
+
+  /*
+   * Two mowers are "equals" if they are on the same squere with the same direction
+   */
+  override def equals(that: scala.Any): Boolean =
+    that match {
+      case that: Mower => this.position == that.position && this.direction == this.direction
+      case _ => false
+    }
 }
