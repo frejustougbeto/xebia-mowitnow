@@ -9,9 +9,10 @@ class MowerSpec extends FlatSpec with Matchers {
     }
 
     it should "not be instanciate outside the lawn" in {
-      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(6, 6), NORTH, LawnGrid(5, 5))
-      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(4, 6), NORTH, LawnGrid(5, 5))
-      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(-1, -1), NORTH, LawnGrid(5, 5))
+      val lawn = LawnGrid(5, 5)
+      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(6, 6), NORTH, lawn)
+      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(4, 6), NORTH, lawn)
+      an[IllegalArgumentException] should be thrownBy new Mower(Coordinate(-1, -1), NORTH, lawn)
     }
 
     it should "turn clockwise" in {
@@ -51,7 +52,7 @@ class MowerSpec extends FlatSpec with Matchers {
 
   it should "moves when asked to" in  {
     val lawn = LawnGrid(5, 5)
-    val mower = new Mower(Coordinate(0, 0), NORTH, LawnGrid(5, 5))
+    val mower = new Mower(Coordinate(0, 0), NORTH, lawn)
 
     mower.move()
     assert(mower == new Mower(0, 1, NORTH, lawn))
@@ -67,5 +68,13 @@ class MowerSpec extends FlatSpec with Matchers {
     mower.turn()
     mower.move()
     assert(mower == new Mower(0, 0, WEST, lawn))
+  }
+
+  it should "not move outside the lawn" in {
+    val lawn = LawnGrid(5, 5)
+    val mower = new Mower(Coordinate(0, 0), SOUTH, lawn)
+    mower.move()
+
+    assert(mower.position == Coordinate(0, 0))
   }
 }

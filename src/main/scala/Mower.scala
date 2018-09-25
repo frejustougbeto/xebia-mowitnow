@@ -29,7 +29,9 @@ class Mower(var position: Coordinate, var direction: Orientation, lawnGrid: Lawn
    * space in the current direction
    */
   def move(): Unit = {
-    this.position += this.direction.vector
+    val newPosition = this.position + this.direction.vector
+    if(lawnGrid.contains(newPosition))
+      this.position = newPosition
   }
 
   /*
