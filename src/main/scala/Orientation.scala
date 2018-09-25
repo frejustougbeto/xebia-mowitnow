@@ -1,36 +1,35 @@
 /*
- * Orientation enum list the four cardinal points
+ * Orientation mimic a enum that lists the four cardinal points
  *
- * It's defined in clockwise order to be able to easily rotate
- * by incrementing the id
+ * Each point defines its next and previous point in the compass
  */
 
 sealed trait Orientation {
   val name: String
-  def next()
-  def previous()
+  def next(): Orientation
+  def previous(): Orientation
 }
 
 case object NORTH extends Orientation {
   override val name: String = "N"
-  override def next(): Unit = EAST
-  override def previous(): Unit = WEST
+  override def next(): Orientation = EAST
+  override def previous(): Orientation = WEST
 }
 
 case object EAST extends Orientation {
   override val name: String = "E"
-  override def next(): Unit = SOUTH
-  override def previous(): Unit = NORTH
+  override def next(): Orientation = SOUTH
+  override def previous(): Orientation = NORTH
 }
 
 case object SOUTH extends Orientation {
   override val name: String = "S"
-  override def next(): Unit = WEST
-  override def previous(): Unit = EAST
+  override def next(): Orientation = WEST
+  override def previous(): Orientation = EAST
 }
 
 case object WEST extends Orientation {
   override val name: String = "W"
-  override def next(): Unit = NORTH
-  override def previous(): Unit = SOUTH
+  override def next(): Orientation = NORTH
+  override def previous(): Orientation = SOUTH
 }
