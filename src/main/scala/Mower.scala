@@ -3,12 +3,15 @@ import Rotation._
 /*
  * Mowner asset
  */
-class Mower(var position: Coordinate, var direction: Orientation) {
+class Mower(var position: Coordinate, var direction: Orientation, lawnGrid: LawnGrid) {
+
+  if(!lawnGrid.contains(position))
+    throw new IllegalArgumentException("Initial position should be in lawnGrid")
 
   /*
    * Auxiliary constructor for commodity
    */
-  def this(x: Int, y: Int, direction: Orientation) = this(Coordinate(x, y), direction)
+  def this(x: Int, y: Int, direction: Orientation, lawnGrid: LawnGrid) = this(Coordinate(x, y), direction, lawnGrid)
 
   /*
    * When this method is called, mowner turn in place
