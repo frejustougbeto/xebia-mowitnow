@@ -1,8 +1,10 @@
 import org.scalatest.FlatSpec
 
-class LawnGridTest extends FlatSpec {
+class LawnGridSpec extends FlatSpec {
 
-  "LawGrid" should "contains inside position" in {
+  behavior of "LawnGrid"
+
+  it should "contains inside position" in {
     val lawn = LawnGrid(3, 3)
     assert(lawn.contains(Coordinate(0, 0)))
     assert(lawn.contains(Coordinate(1, 0)))
@@ -15,7 +17,7 @@ class LawnGridTest extends FlatSpec {
     assert(lawn.contains(Coordinate(2, 2)))
   }
 
-  "LawGrid" should "not contains inside position" in {
+  it should "not contains inside position" in {
     val lawn = LawnGrid(3, 3)
     assert(!lawn.contains(Coordinate(-1, -1)))
     assert(!lawn.contains(Coordinate(0, -1)))
