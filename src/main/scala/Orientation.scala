@@ -6,6 +6,16 @@
  * in the euclidian plan
  */
 
+object Orientation {
+  def fromName(name: String): Orientation =
+    name match {
+      case "N" => NORTH
+      case "E" => EAST
+      case "S" => SOUTH
+      case "W" => WEST
+    }
+}
+
 sealed trait Orientation {
   val name: String
   val vector: Coordinate

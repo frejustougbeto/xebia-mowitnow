@@ -80,4 +80,9 @@ class MowerSpec extends FlatSpec with Matchers {
 
     assert(mower.position == Coordinate(0, 0))
   }
+
+  it should "be able to report its state" in {
+    val m = new Mower(1, 2, "N", LawnGrid(5, 5))
+    assert("1 2 N" == m.stateReport)
+  }
 }

@@ -11,7 +11,11 @@ class Mower(var position: Coordinate, var direction: Orientation, lawnGrid: Lawn
   /*
    * Auxiliary constructor for commodity
    */
-  def this(x: Int, y: Int, direction: Orientation, lawnGrid: LawnGrid) = this(Coordinate(x, y), direction, lawnGrid)
+  def this(x: Int, y: Int, direction: Orientation, lawnGrid: LawnGrid) =
+    this(Coordinate(x, y), direction, lawnGrid)
+
+  def this(x: Int, y: Int, direction: String, lawnGrid: LawnGrid) =
+    this(Coordinate(x, y), Orientation.fromName(direction), lawnGrid)
 
   /*
    * When this method is called, mowner turn in place
@@ -33,6 +37,11 @@ class Mower(var position: Coordinate, var direction: Orientation, lawnGrid: Lawn
     if(lawnGrid.contains(newPosition))
       this.position = newPosition
   }
+
+  /*
+   * Give a report about its position and direction
+   */
+  def stateReport: String = s"${position.x} ${position.y} ${direction.name}"
 
   /*
    * Two mowers are "equals" if they are on the same squere with the same direction
