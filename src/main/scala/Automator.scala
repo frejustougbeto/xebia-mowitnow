@@ -1,3 +1,8 @@
+/*
+ * Class Automator and its companion object handle
+ * all interactions between the client and the mowers
+ */
+
 
 object Automator {
   val SEPARATOR = " "
@@ -5,11 +10,17 @@ object Automator {
   val RIGHT = 'D'
   val LEFT = 'G'
 
+  /*
+   * Initiate a LawnGrid object from the first line a the command file
+   */
   def initiateGrid(firstLine: String): LawnGrid = {
     val gridSpec = firstLine.split(SEPARATOR).map(_.toInt)
     LawnGrid(gridSpec(0) + 1, gridSpec(1) + 1)
   }
 
+  /*
+   * Order the movement of the mower from a initial position and the sequence of command
+   */
   def runMower(initialPosition: String, commands: String, lawnGrid: LawnGrid): String = {
     val splitted = initialPosition.split(SEPARATOR)
 
@@ -37,6 +48,9 @@ object Automator {
 class Automator {
   var lawnGrid: LawnGrid = _
 
+  /*
+   * Initialized the lawn and sequentially run the mowers
+   */
   def runSequence(sequence: List[String]): List[String] =
     sequence match {
       case x :: xs =>
