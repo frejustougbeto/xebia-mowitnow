@@ -13,6 +13,7 @@ object Orientation {
       case "E" => EAST
       case "S" => SOUTH
       case "W" => WEST
+      case _ => throw new IllegalArgumentException(s"Unknown name $name")
     }
 }
 
